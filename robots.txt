@@ -1,0 +1,79 @@
+# ═══════════════════════════════════════════════
+# robots.txt — OneSendz (onesendz.com)
+# Atualizado: março 2025
+# ═══════════════════════════════════════════════
+
+# ── Motores de busca tradicionais ──────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# ── Crawlers de IA — GEO (Generative Engine Optimization) ──
+# Permitir que IAs como ChatGPT, Perplexity, Claude e Gemini
+# indexem e citem o conteúdo da OneSendz
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Gemini
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# ── Regra padrão para todos os outros ──────────
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+
+# ── Sitemap ────────────────────────────────────
+Sitemap: https://onesendz.com/sitemap.xml
+
+# ── Host canônico ──────────────────────────────
+Host: onesendz.com
