@@ -1,0 +1,13 @@
+{
+  "name": "onesendz-landing",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vibedit/vite": "^0.2.0",
+    "vite": "^8.0.3"
+  }
+}
