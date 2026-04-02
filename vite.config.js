@@ -1,6 +1,10 @@
 import { defineConfig } from 'vite';
-import { vibedit } from '@vibedit/vite';
 
-export default defineConfig({
-  plugins: [vibedit()],
+export default defineConfig(async ({ command }) => {
+  const plugins = [];
+  if (command === 'serve') {
+    const { vibedit } = await import('@vibedit/vite');
+    plugins.push(vibedit());
+  }
+  return { plugins };
 });
