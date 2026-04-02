@@ -201,7 +201,7 @@
   --max:       1180px;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: var(--f-body);
   font-size: 16px;
@@ -278,21 +278,21 @@ header.stuck { box-shadow: 0 2px 28px rgba(0,0,0,0.07); }
   display: grid;
   grid-template-columns: 44% 56%;
   gap: 0;
-  align-items: flex-end;
+  align-items: center;
   position: relative; z-index: 2;
-  min-height: calc(100vh - 70px);
+  min-height: clamp(480px, calc(100vh - 100px), 760px);
 }
 
 /* LEFT */
 .hero-left {
   padding-right: 48px;
-  padding-bottom: 80px;
-  padding-top: 80px;
+  padding-bottom: 32px;
+  padding-top: 24px;
 }
 
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
   padding: 5px 5px 5px 5px;
   background: var(--leaf-10);
   border: 1px solid var(--leaf-8);
@@ -380,7 +380,8 @@ h1 .nowrap { white-space: nowrap; }
   overflow: hidden;
   box-shadow: 0 -12px 60px rgba(0,0,0,.13), 0 0 0 1px rgba(0,0,0,.04);
   transform: none;
-  margin-left: 24px;
+  margin-left: clamp(8px, 2vw, 24px);
+  min-width: 0;
 }
 .dash-topbar {
   background: #ECECEC;
@@ -395,11 +396,11 @@ h1 .nowrap { white-space: nowrap; }
   padding: 4px 12px; font-size: 11px; color: var(--ink-6);
   text-align: center; border: 1px solid var(--ink-9);
 }
-.dash-body { display: flex; height: 500px; overflow: hidden; }
+.dash-body { display: flex; height: clamp(380px, 46vh, 520px); overflow: hidden; }
 
 /* Sidebar — verde exato do app: #1B6535 */
 .dash-sidebar {
-  width: 152px; flex-shrink: 0;
+  width: clamp(110px, 13vw, 152px); flex-shrink: 0;
   background: #1B6535;
   display: flex; flex-direction: column;
 }
@@ -996,11 +997,25 @@ footer {
 .rv-3 { transition-delay: .18s; }
 
 /* ─── RESPONSIVE ─── */
+@media (max-width: 1280px) {
+  /* Hero mockup adjustments for medium desktops */
+  .hero-grid { grid-template-columns: 46% 54%; }
+  .hero-left { padding-right: 32px; }
+  .dash-kpis { grid-template-columns: repeat(2, 1fr); }
+  .dash-sidebar-logo span { display: none; }
+  .dash-nav-item { padding: 9px 10px; font-size: 10.5px; }
+}
+
 @media (max-width: 1023px) {
   .hero-grid { grid-template-columns: 1fr; }
-  .hero-left { padding-right: 0; padding-bottom: 60px; }
-  .hero-right { display: none; }
+  .hero-left { padding-right: 0; padding-bottom: 40px; }
+  .hero-right { display: block; align-self: auto; }
   .hero-wm { display: none; }
+  .dash-wrap { margin-left: 0; border-radius: 14px; border-bottom: 1px solid var(--ink-9); }
+  .dash-body { height: 320px; }
+  .dash-sidebar { display: none; }
+  .dash-kpis { grid-template-columns: repeat(2, 1fr); }
+  .dash-charts { grid-template-columns: 1fr; }
   .how-steps { grid-template-columns: 1fr; }
   .how-step { border-radius: 0 !important; }
   .how-step:first-child { border-radius: 16px 16px 0 0 !important; }
@@ -1033,16 +1048,30 @@ footer {
 @media (max-width: 767px) {
   /* Base */
   html, body { overflow-x: hidden; }
-  .wrap { padding: 0 20px; }
+  .wrap { padding: 0 20px; max-width: 100%; }
   header { padding: 0 20px; }
   .nav-links, .nav-actions { display: none; }
   .ham { display: flex; }
 
   /* Hero */
-  .hero { padding-top: 70px; min-height: 0 !important; }
-  .hero-left { padding-top: 48px; padding-bottom: 56px; padding-right: 0; }
-  .hero-right { display: none; }
-  h1 { font-size: 2.4rem; line-height: 1.05; letter-spacing: -.045em; }
+  .hero { padding-top: 70px; min-height: 0 !important; overflow-x: hidden; }
+  .hero-left { padding-top: 20px; padding-bottom: 32px; padding-right: 0; min-width: 0; }
+  .hero-right {
+    display: block;
+    margin-top: 8px;
+    align-self: auto;
+  }
+  .dash-wrap {
+    margin-left: 0;
+    border-radius: 14px;
+    border-bottom: 1px solid var(--ink-9);
+  }
+  .dash-body { height: 260px; }
+  .dash-sidebar { display: none; }
+  .dash-kpis { grid-template-columns: repeat(2, 1fr); }
+  .dash-charts { grid-template-columns: 1fr; }
+  h1 { font-size: clamp(1.7rem, 7.5vw, 2.4rem); line-height: 1.1; letter-spacing: -.04em; }
+  h1 span { white-space: normal !important; }
   .hero-body { font-size: 15px; max-width: 100%; }
   .hero-btns { flex-direction: column; align-items: flex-start; gap: 10px; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
@@ -1176,6 +1205,7 @@ footer {
         <a href="#para-quem">Para quem</a>
         <a href="#funcionalidades">Funcionalidades</a>
         <a href="#automacoes">Automações</a>
+        <a href="#calculadora">Calculadora</a>
         <a href="#faq">FAQ</a>
       </div>
       <div class="nav-actions">
@@ -1213,6 +1243,7 @@ footer {
     <a href="#para-quem" onclick="closeMob()">Para quem é</a>
     <a href="#funcionalidades" onclick="closeMob()">Funcionalidades</a>
     <a href="#automacoes" onclick="closeMob()">Automações</a>
+    <a href="#calculadora" onclick="closeMob()">Calculadora</a>
     <a href="#faq" onclick="closeMob()">FAQ</a>
   </nav>
   <div class="mob-actions">
@@ -1436,7 +1467,7 @@ footer {
     <div class="unica-inner">
       <div class="unica-left">
         <div class="unica-tag">Posicionamento</div>
-        <div class="unica-text">
+        <div style="margin-left: 20px; margin-right: 20px;" class="unica-text">
           A plataforma de WhatsApp marketing onde<br>
           você paga as mensagens <strong>direto na Meta</strong>
         </div>
